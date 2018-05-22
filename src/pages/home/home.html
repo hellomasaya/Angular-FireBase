@@ -3,12 +3,32 @@
     <ion-title>
       Ionic New
     </ion-title>
+    <ion-buttons end>
+        <button ion-button icon-only (click)="addSong()">
+        <ion-icon name="add"></ion-icon>
+        </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+    <ion-list>
+        <ion-item *ngFor="let song of songs | async" (click)="showOptions(song.id, song.title)">
+            {{song.title}}
+        </ion-item>
+    </ion-list>
 </ion-content>
+
+<script src="https://www.gstatic.com/firebasejs/5.0.3/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBdORo-kyyeS7og8EGnb9ugi4t6lGA4V_U",
+    authDomain: "h4-1-99.firebaseapp.com",
+    databaseURL: "https://h4-1-99.firebaseio.com/",
+    projectId: "h4-1-99",
+    storageBucket: "h4-1-99.appspot.com",
+    messagingSenderId: "443823636020"
+  };
+  firebase.initializeApp(config);
+</script>
